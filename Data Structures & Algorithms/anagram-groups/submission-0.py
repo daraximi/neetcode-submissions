@@ -1,11 +1,16 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        mymap  ={}
-        for word in strs:
-            lowerword = ''.join(sorted(word))
-            if lowerword not in mymap:
-                mymap[lowerword] = [word]
+        res = []
+        myMap = {}
+
+        for currStr in strs:
+            trs = tuple(sorted(currStr))
+            if trs in myMap:
+                myMap[trs].append(currStr)
             else:
-                mymap[lowerword].append(word)
-        return list(mymap.values())
+                myMap[trs] = [currStr]
+        for key, val in myMap.items():
+            res.append(val)
+        return res
+        
         
